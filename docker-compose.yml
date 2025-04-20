@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  metaduck:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: metaduck:latest
+    container_name: metaduck
+    ports:
+      - "80:3000"
+    environment:
+      # tell Metabase to use this file for its own metadata
+      MB_DB_FILE: /metabase-data/metabase.db
+      # where Metabase will look for plugins
+      MB_PLUGINS_DIR: /home/plugins
+      JAVA_TOOL_OPTIONS: "-Djava.library.path=/home/plugins"
+    # limit container to 2GB RAM
+    mem_limit: 2g
+    volumes:
+      - ./metabase_data:/metabase-data  # host‐persisted metadata
+      - ./data:/data
+
+volumes:
+  metabase_data:
