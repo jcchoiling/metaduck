@@ -1,0 +1,2 @@
+# metaduck
+Metabase with DuckDB 
