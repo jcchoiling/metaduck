@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   metaduck:
     build:
@@ -8,7 +6,7 @@ services:
     image: metaduck:latest
     container_name: metaduck
     ports:
-      - "80:3000"
+      - "8083:3000"   # Use port 8081
     environment:
       # tell Metabase to use this file for its own metadata
       MB_DB_FILE: /metabase-data/metabase.db
